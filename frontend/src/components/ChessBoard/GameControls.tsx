@@ -1,8 +1,12 @@
 import React from 'react';
-import { RotateCcw, RefreshCw, Volume2, VolumeX, Flag, Play } from 'lucide-react';
+import { RotateCcw, RefreshCw, Volume2, VolumeX, Flag, Play, Bot } from 'lucide-react';
 import { TIME_CONTROLS } from '../../hooks/useChessGame';
+import type { GameMode, BotDifficulty } from '../../types/chess';
 
 interface GameControlsProps {
+  gameMode: GameMode;
+  botDifficulty?: BotDifficulty;
+  setBotDifficulty?: (diff: BotDifficulty) => void;
   resetGame: (tcKey?: string) => void;
   flipBoard: () => void;
   undoMove: () => void;
@@ -13,6 +17,9 @@ interface GameControlsProps {
 }
 
 export const GameControls: React.FC<GameControlsProps> = ({
+  gameMode,
+  botDifficulty = 'medium',
+  setBotDifficulty,
   resetGame,
   flipBoard,
   undoMove,
@@ -23,6 +30,32 @@ export const GameControls: React.FC<GameControlsProps> = ({
 }) => {
   return (
     <div className="bg-[#21201d] border border-[#312e2b] p-3 rounded-xl space-y-3">
+      {/* Bot difficulty selector if in vs-computer mode */}
+      {gameMode === 'vs-computer' && setBotDifficulty && (
+        <div className="flex items-center justify-between bg-[#282622] p-2 rounded-lg border border-[#363431]">
+          <div className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+            <Bot className="w-4 h-4 text-blue-400" />
+            <span>Bot Level:</span>
+          </div>
+          <div className="flex items-center gap-1">
+            {(['easy', 'medium', 'hard'] as const).map((level) => (
+              <button
+                key={level}
+                onClick={() => setBotDifficulty(level)}
+                className={`text-[11px] font-bold px-2 py-1 rounded transition capitalize ${
+                  botDifficulty === level
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white hover:bg-[#363431]'
+                }`}
+              >
+                {level === 'easy' ? 'Easy (800)' : level === 'medium' ? 'Med (1500)' : 'Hard (2100)'}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Time control selector & Reset button */}
       <div className="flex items-center gap-2">
         <select
           value={timeControlKey}
@@ -48,6 +81,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
         </button>
       </div>
 
+      {/* Auxiliary control bar */}
       <div className="grid grid-cols-4 gap-2">
         <button
           onClick={flipBoard}
@@ -72,11 +106,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
           className="flex flex-col items-center justify-center gap-1 bg-[#2b2926] hover:bg-[#363431] text-gray-300 hover:text-white p-2 rounded-lg text-[11px] font-medium transition border border-[#363431]"
           title="Toggle move audio effects"
         >
-          {soundEnabled ? (
-            <Volume2 className="w-4 h-4 text-amber-400" />
-          ) : (
-            <VolumeX className="w-4 h-4 text-red-400" />
-          )}
+          {soundEnabled ? <Volume2 className="w-4 h-4 text-amber-400" /> : <VolumeX className="w-4 h-4 text-red-400" />}
           <span>Sound</span>
         </button>
 

@@ -1,4 +1,4 @@
-﻿export type GameMode = 'pass-and-play' | 'vs-computer' | 'online';
+export type GameMode = 'pass-and-play' | 'vs-computer' | 'online';
 
 export type TimeControl = {
   name: string;
@@ -31,3 +31,19 @@ export type CapturedPieces = {
 };
 
 export type GameStatus = 'active' | 'checkmate' | 'stalemate' | 'draw' | 'timeout' | 'resigned';
+
+export type BoardTheme = 'classic' | 'wood' | 'ocean';
+
+export type BotDifficulty = 'easy' | 'medium' | 'hard';
+
+export type PuzzleItem = {
+  id: string;
+  title: string;
+  theme: string;
+  rating: number;
+  description: string;
+  hint: string;
+  fen: string;
+  turn: 'w' | 'b';
+  solution: { from: string; to: string }[];
+};

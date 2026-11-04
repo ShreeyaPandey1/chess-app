@@ -6,17 +6,18 @@ A modern, responsive full-stack chess web application inspired by Chess.com. Bui
 
 ## ♟️ Key Features
 
-- **Interactive Chessboard**: Smooth piece dragging and click-to-move powered by `react-chessboard` with custom themes (Classic Green, Warm Wood, Ice Blue).
+- **Interactive Chessboard with Live Evaluation Bar**: Smooth piece dragging and click-to-move powered by `react-chessboard`, equipped with a real-time vertical evaluation bar (advantage gauge) calculating material balance and positional advantages.
+- **Custom Board Themes**: Dynamic live theme switcher supporting **Classic Green**, **Warm Wood**, and **Ice Blue**, saved to user preferences.
+- **Move History & Replay Navigation**: Step backward and forward through past moves with `|◀`, `◀`, `▶`, and `▶| Live` review controls or click any move in the history table to preview historical board states without interrupting live games.
+- **Multi-Level Computer Bot**: Challenge the AI with selectable difficulty settings:
+  - **Novice (800 Elo)**: Casual tactical play with occasional oversights.
+  - **Intermediate (1500 Elo)**: Positional evaluations and opportunistic captures.
+  - **Master (2100 Elo)**: 2-ply minimax tactical depth search maximizing material and space control.
 - **Authoritative Rules Validation**: Fully powered by `chess.js` for legal move generation, captures, check/checkmate detection, stalemate, draw detection, and pawn promotion.
-- **Synthesized Web Audio Engine**: Zero-latency, browser-native audio synthesis for move clicks, capture impacts, check alerts, and notifications without requiring external audio asset downloads.
+- **Synthesized Web Audio Engine**: Zero-latency, browser-native audio synthesis for move clicks, capture impacts, check alerts, castling, and win/loss fanfare without requiring external audio asset downloads.
 - **Live Clocks & Time Controls**: Integrated match timers supporting Bullet (1m), Blitz (3m, 3|2 increment), Rapid (10m), and Classical (30m).
-- **Move History & FEN Export**: Clean PGN move record table with one-click FEN string copy to clipboard.
-- **Multiple Game Modes**:
-  - **Pass-and-Play**: Local 2-player mode on the same device.
-  - **VS Computer Bot**: Challenge an automated engine opponent.
-  - **Online Multiplayer (Socket.IO)**: Real-time room creation, match joining, and bi-directional move sync.
-- **Daily Tactics Puzzles**: Interactive chess puzzles with streak tracking and ratings.
-- **Global Leaderboard**: Ranking table showcasing top Grandmasters and win rates.
+- **Tactics Puzzle Arena**: Curated interactive tactical puzzles (Mate in 1, Royal Fork, Back-Rank Mate, Smothered Mate, and Anastasia's Mate) complete with tactical hints, move validation, rating tracking, and streak counters.
+- **Global Grandmaster Leaderboard**: Ranking table showcasing top Grandmasters and live win rates.
 
 ---
 
@@ -44,9 +45,9 @@ chess-app/
 ├── frontend/                     # React + TypeScript + Vite Client
 │   ├── src/
 │   │   ├── components/           # UI components (Sidebar, Puzzles, Leaderboard, Settings)
-│   │   │   └── ChessBoard/       # Board, PlayerCard, MoveHistory, GameControls, PromotionModal
-│   │   ├── hooks/                # useChessGame state engine hook
-│   │   ├── types/                # TypeScript game models and types
+│   │   │   └── ChessBoard/       # Board, EvalBar, PlayerCard, MoveHistory, GameControls, PromotionModal
+│   │   ├── hooks/                # useChessGame state engine & minimax AI hook
+│   │   ├── types/                # TypeScript game models, puzzles, and types
 │   │   └── utils/                # Web Audio sound synthesis engine
 │   └── package.json
 ├── backend/                      # Express + Socket.IO Server
@@ -87,8 +88,8 @@ The WebSocket and REST API server will run at `http://localhost:4000`.
 ## 🛣️ Roadmap
 
 - [x] **Phase 1 — Chess Core**: Interactive board, legal moves, clocks, audio, move history.
-- [x] **Phase 2 — UI & Views**: Sidebar navigation, puzzles, leaderboards, theme settings.
-- [x] **Phase 3 — Multiplayer Basics**: Socket.IO game rooms, move broadcasts, server validation.
-- [ ] **Phase 4 — Database & Auth**: PostgreSQL + Prisma ORM, JWT authentication, user Elo ratings.
-- [ ] **Phase 5 — Engine Integration**: Full Stockfish engine analysis, blunder/mistake detection.
+- [x] **Phase 2 — UI & Views**: Sidebar navigation, tactics arena puzzles, leaderboards, theme settings.
+- [x] **Phase 3 — Evaluation & AI**: Real-time evaluation bar, move replay navigation, multi-tier bot AI.
+- [x] **Phase 4 — Multiplayer Basics**: Socket.IO game rooms, move broadcasts, server validation.
+- [ ] **Phase 5 — Database & Auth**: PostgreSQL + Prisma ORM, JWT authentication, user Elo ratings.
 - [ ] **Phase 6 — Production Deployment**: Docker containers, Redis caching, cloud hosting.
