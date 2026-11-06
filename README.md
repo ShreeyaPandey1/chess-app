@@ -1,4 +1,4 @@
-# Chess.Core — Full-Stack Chess Platform
+# Chess.Core Full-Stack Chess Platform
 
 A modern, responsive full-stack chess web application inspired by Chess.com. Built as a serious portfolio capstone demonstrating real-time WebSocket communication, strict client- and server-side chess rule validation via `chess.js`, customizable timers, Web Audio sound effects, tactical puzzles, and competitive leaderboard rankings.
 
