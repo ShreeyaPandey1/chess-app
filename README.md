@@ -87,9 +87,9 @@ The WebSocket and REST API server will run at `http://localhost:4000`.
 
 ## 🛣️ Roadmap
 
-- [x] **Phase 1 — Chess Core**: Interactive board, legal moves, clocks, audio, move history.
-- [x] **Phase 2 — UI & Views**: Sidebar navigation, tactics arena puzzles, leaderboards, theme settings.
-- [x] **Phase 3 — Evaluation & AI**: Real-time evaluation bar, move replay navigation, multi-tier bot AI.
-- [x] **Phase 4 — Multiplayer Basics**: Socket.IO game rooms, move broadcasts, server validation.
-- [ ] **Phase 5 — Database & Auth**: PostgreSQL + Prisma ORM, JWT authentication, user Elo ratings.
-- [ ] **Phase 6 — Production Deployment**: Docker containers, Redis caching, cloud hosting.
+- [x] **Phase 1  Chess Core**: Interactive board, legal moves, clocks, audio, move history.
+- [x] **Phase 2  UI & Views**: Sidebar navigation, tactics arena puzzles, leaderboards, theme settings.
+- [x] **Phase 3  Evaluation & AI**: Real-time evaluation bar, move replay navigation, multi-tier bot AI.
+- [x] **Phase 4  Multiplayer Basics**: Socket.IO game rooms, move broadcasts, server validation.
+- [ ] **Phase 5  Database & Auth**: PostgreSQL + Prisma ORM, JWT authentication, user Elo ratings.
+- [ ] **Phase 6  Production Deployment**: Docker containers, Redis caching, cloud hosting.
